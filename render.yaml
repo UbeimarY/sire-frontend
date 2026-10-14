@@ -1,0 +1,15 @@
+# Render Blueprint (frontend): New > Blueprint > select this repository.
+services:
+  - type: web
+    name: sire-frontend
+    runtime: static
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      # Public URL of the backend, e.g. https://sire-backend.onrender.com
+      - key: VITE_API_URL
+        sync: false
